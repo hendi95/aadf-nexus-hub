@@ -7,17 +7,63 @@ import { AuthProvider, useAuth } from "@/components/AuthContext";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
+import MessageCenter from "./components/messaging/MessageCenter";
+import ProfilePage from "./components/profile/ProfilePage";
+import Header from "./components/layout/Header";
+import { useState, useEffect } from "react";
 
 const queryClient = new QueryClient();
 
 const AppContent = () => {
   const { isAuthenticated } = useAuth();
+  const [currentPage, setCurrentPage] = useState('dashboard');
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '') || 'dashboard';
+      setCurrentPage(hash);
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    handleHashChange(); // Handle initial hash
+
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   if (!isAuthenticated) {
     return <Login />;
   }
 
-  return <Dashboard />;
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'messages':
+        return (
+          <div className="min-h-screen bg-background">
+            <Header />
+            <main className="container mx-auto px-4 py-8">
+              <div className="mb-6">
+                <h1 className="text-2xl font-bold">Message Center</h1>
+                <p className="text-muted-foreground">Connect and collaborate with your AADF network</p>
+              </div>
+              <MessageCenter />
+            </main>
+          </div>
+        );
+      case 'profile':
+        return (
+          <div className="min-h-screen bg-background">
+            <Header />
+            <main className="container mx-auto px-4 py-8">
+              <ProfilePage />
+            </main>
+          </div>
+        );
+      default:
+        return <Dashboard />;
+    }
+  };
+
+  return renderPage();
 };
 
 const App = () => (

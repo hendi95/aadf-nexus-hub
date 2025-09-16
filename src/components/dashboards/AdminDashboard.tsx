@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-import { BarChart, Users, Globe, TrendingUp, Shield, Settings, Calendar, Mail } from 'lucide-react';
+import { BarChart, Users, Globe, TrendingUp, Shield, Settings, Calendar, Mail, MessageSquare } from 'lucide-react';
 
 const AdminDashboard = () => {
   const platformStats = [
@@ -127,10 +127,10 @@ const AdminDashboard = () => {
                     {item.type}
                   </Badge>
                   <div className="flex space-x-2">
-                    <Button size="sm" className="flex-1">
+                    <Button size="sm" className="flex-1 text-xs">
                       Approve
                     </Button>
-                    <Button size="sm" variant="outline" className="flex-1">
+                    <Button size="sm" variant="outline" className="flex-1 text-xs">
                       Review
                     </Button>
                   </div>
@@ -177,22 +177,25 @@ const AdminDashboard = () => {
           <CardDescription>Common management tasks and system controls</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Button className="btn-professional">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <Button 
+              className="btn-professional w-full" 
+              onClick={() => window.location.hash = 'messages'}
+            >
+              <MessageSquare className="mr-2 h-4 w-4" />
+              <span className="hidden sm:inline">Platform</span> Messages
+            </Button>
+            <Button variant="outline" className="w-full">
               <Users className="mr-2 h-4 w-4" />
-              Manage Users
+              <span className="hidden sm:inline">Manage</span> Users
             </Button>
-            <Button variant="outline">
+            <Button variant="outline" className="w-full">
               <Settings className="mr-2 h-4 w-4" />
-              System Settings
+              <span className="hidden sm:inline">System</span> Settings
             </Button>
-            <Button variant="outline">
+            <Button variant="outline" className="w-full">
               <Calendar className="mr-2 h-4 w-4" />
-              Event Management
-            </Button>
-            <Button variant="outline">
-              <Mail className="mr-2 h-4 w-4" />
-              Send Announcements
+              <span className="hidden sm:inline">Event</span> Management
             </Button>
           </div>
         </CardContent>

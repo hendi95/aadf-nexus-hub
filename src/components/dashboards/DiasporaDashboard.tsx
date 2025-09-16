@@ -162,7 +162,7 @@ const DiasporaDashboard = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {diasporaLab.map((initiative, index) => (
               <div key={index} className="p-4 rounded-lg border border-border hover:bg-card-hover transition-colors">
                 <Badge className="mb-2">{initiative.category}</Badge>
@@ -190,22 +190,25 @@ const DiasporaDashboard = () => {
           <CardDescription>Connect and collaborate across borders</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <Button className="btn-professional">
-              <Globe className="mr-2 h-4 w-4" />
-              Find Diaspora
-            </Button>
-            <Button variant="outline">
-              <Users className="mr-2 h-4 w-4" />
-              Mentor Local Talent
-            </Button>
-            <Button variant="outline">
-              <Briefcase className="mr-2 h-4 w-4" />
-              Start Collaboration
-            </Button>
-            <Button variant="outline">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <Button 
+              className="btn-professional w-full" 
+              onClick={() => window.location.hash = 'messages'}
+            >
               <MessageSquare className="mr-2 h-4 w-4" />
-              Join Discussions
+              <span className="hidden sm:inline">Send</span> Messages
+            </Button>
+            <Button variant="outline" className="w-full">
+              <Globe className="mr-2 h-4 w-4" />
+              <span className="hidden sm:inline">Find</span> Diaspora
+            </Button>
+            <Button variant="outline" className="w-full">
+              <Users className="mr-2 h-4 w-4" />
+              <span className="hidden sm:inline">Mentor</span> Talent
+            </Button>
+            <Button variant="outline" className="w-full">
+              <Briefcase className="mr-2 h-4 w-4" />
+              <span className="hidden sm:inline">Start</span> Project
             </Button>
           </div>
         </CardContent>

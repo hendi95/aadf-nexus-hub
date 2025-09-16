@@ -87,7 +87,7 @@ const AlumniDashboard = () => {
                       </div>
                     </div>
                   </div>
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" size="sm" className="whitespace-nowrap">
                     Connect
                   </Button>
                 </div>
@@ -124,7 +124,7 @@ const AlumniDashboard = () => {
                     <span>Deadline: {opportunity.deadline}</span>
                     <span>{opportunity.applicants} applicants</span>
                   </div>
-                  <Button variant="outline" size="sm" className="mt-3">
+                  <Button variant="outline" size="sm" className="mt-3 w-full sm:w-auto">
                     Learn More
                   </Button>
                 </div>
@@ -144,18 +144,25 @@ const AlumniDashboard = () => {
           <CardDescription>Common tasks and features</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Button className="btn-professional">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <Button 
+              className="btn-professional w-full" 
+              onClick={() => window.location.hash = 'messages'}
+            >
+              <MessageSquare className="mr-2 h-4 w-4" />
+              <span className="hidden sm:inline">Send</span> Messages
+            </Button>
+            <Button variant="outline" className="w-full">
               <Users className="mr-2 h-4 w-4" />
-              Find Alumni
+              <span className="hidden sm:inline">Find</span> Alumni
             </Button>
-            <Button variant="outline">
+            <Button variant="outline" className="w-full">
               <BookOpen className="mr-2 h-4 w-4" />
-              Create Project
+              <span className="hidden sm:inline">Create</span> Project
             </Button>
-            <Button variant="outline">
+            <Button variant="outline" className="w-full">
               <Calendar className="mr-2 h-4 w-4" />
-              View Events
+              <span className="hidden sm:inline">View</span> Events
             </Button>
           </div>
         </CardContent>
