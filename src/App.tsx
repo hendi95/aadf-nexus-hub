@@ -16,6 +16,7 @@ import CollaborationDetails from "./pages/CollaborationDetails";
 import AlumniCommunity from "./pages/AlumniCommunity";
 import Header from "./components/layout/Header";
 import { useState, useEffect } from "react";
+import { ConnectionsProvider } from "./components/connections/ConnectionsContext";
 
 const queryClient = new QueryClient();
 
@@ -88,10 +89,12 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <AuthProvider>
-          <Routes>
-            <Route path="/" element={<AppContent />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <ConnectionsProvider>
+            <Routes>
+              <Route path="/" element={<AppContent />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </ConnectionsProvider>
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>

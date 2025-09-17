@@ -1,4 +1,6 @@
 import React from 'react';
+import { useAuth } from '@/components/AuthContext';
+import { useConnections } from '@/components/connections/ConnectionsContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -6,6 +8,8 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Users, Calendar, BookOpen, MessageSquare, TrendingUp, Globe } from 'lucide-react';
 
 const AlumniDashboard = () => {
+  const { user } = useAuth();
+  const { sendRequest } = useConnections();
   const stats = [
     { label: 'Network Connections', value: '127', icon: Users, change: '+12 this month' },
     { label: 'Active Projects', value: '3', icon: BookOpen, change: '2 pending approval' },
@@ -44,17 +48,17 @@ const AlumniDashboard = () => {
               key={index} 
               className="card-professional cursor-pointer hover:bg-card-hover transition-colors"
               onClick={() => {
-                if (stat.label === 'Network Connections') window.location.href = '#/network-connections';
-                if (stat.label === 'Active Projects') window.location.href = '#/active-projects';
-                if (stat.label === 'Upcoming Events') window.location.href = '#/upcoming-events';
-                if (stat.label === 'Messages') window.location.href = '#/messages';
+                if (stat.label === 'Network Connections') window.location.hash = 'network-connections';
+                if (stat.label === 'Active Projects') window.location.hash = 'active-projects';
+                if (stat.label === 'Upcoming Events') window.location.hash = 'upcoming-events';
+                if (stat.label === 'Messages') window.location.hash = 'messages';
               }}
             >
-              <CardContent className="p-4">
+              <CardContent className="p-3">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm text-muted-foreground">{stat.label}</p>
-                    <p className="text-2xl font-bold text-primary">{stat.value}</p>
+                    <p className="text-xl font-bold text-primary">{stat.value}</p>
                     <p className="text-xs text-success mt-1">{stat.change}</p>
                   </div>
                   <Icon className="h-6 w-6 text-primary" />
@@ -96,13 +100,18 @@ const AlumniDashboard = () => {
                       </div>
                     </div>
                   </div>
-                  <Button variant="outline" size="sm" className="whitespace-nowrap">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="whitespace-nowrap"
+                    onClick={() => sendRequest(user?.type === 'alumni' ? 'diaspora' : 'alumni', { fromNameOverride: user?.name })}
+                  >
                     Connect
                   </Button>
                 </div>
               ))}
             </div>
-            <Button variant="outline" className="w-full mt-4">
+            <Button variant="outline" className="w-full mt-4" onClick={() => (window.location.hash = 'network-connections')}>
               View All Connections
             </Button>
           </CardContent>
@@ -137,7 +146,7 @@ const AlumniDashboard = () => {
                     variant="outline" 
                     size="sm" 
                     className="mt-3 w-full sm:w-auto"
-                    onClick={() => window.location.href = '#/collaboration-details'}
+                    onClick={() => window.location.hash = 'collaboration-details'}
                   >
                     Learn More
                   </Button>
@@ -169,7 +178,7 @@ const AlumniDashboard = () => {
             <Button 
               variant="outline" 
               className="w-full"
-              onClick={() => window.location.href = '#/alumni-community'}
+              onClick={() => window.location.hash = 'alumni-community' }
             >
               <Users className="mr-2 h-4 w-4" />
               <span className="hidden sm:inline">Find</span> Alumni
@@ -181,7 +190,7 @@ const AlumniDashboard = () => {
             <Button 
               variant="outline" 
               className="w-full"
-              onClick={() => window.location.href = '#/upcoming-events'}
+              onClick={() => window.location.hash = 'upcoming-events' }
             >
               <Calendar className="mr-2 h-4 w-4" />
               <span className="hidden sm:inline">View</span> Events

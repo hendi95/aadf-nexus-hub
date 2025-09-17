@@ -1,4 +1,6 @@
 import React from 'react';
+import { useAuth } from '@/components/AuthContext';
+import { useConnections } from '@/components/connections/ConnectionsContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -6,6 +8,8 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Globe, Users, Briefcase, MessageSquare, Lightbulb, MapPin } from 'lucide-react';
 
 const DiasporaDashboard = () => {
+  const { user } = useAuth();
+  const { sendRequest } = useConnections();
   const stats = [
     { label: 'Global Network', value: '89', icon: Globe, change: '+5 new countries' },
     { label: 'Active Collaborations', value: '7', icon: Briefcase, change: '3 cross-border projects' },
@@ -50,17 +54,17 @@ const DiasporaDashboard = () => {
               key={index} 
               className="card-professional cursor-pointer hover:bg-card-hover transition-colors"
               onClick={() => {
-                if (stat.label === 'Global Network') window.location.href = '#/network-connections';
-                if (stat.label === 'Active Collaborations') window.location.href = '#/active-projects';
-                if (stat.label === 'Mentorship Sessions') window.location.href = '#/upcoming-events';
-                if (stat.label === 'Innovation Ideas') window.location.href = '#/collaboration-details';
+                if (stat.label === 'Global Network') window.location.hash = 'network-connections';
+                if (stat.label === 'Active Collaborations') window.location.hash = 'active-projects';
+                if (stat.label === 'Mentorship Sessions') window.location.hash = 'upcoming-events';
+                if (stat.label === 'Innovation Ideas') window.location.hash = 'collaboration-details';
               }}
             >
-              <CardContent className="p-4">
+              <CardContent className="p-3">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm text-muted-foreground">{stat.label}</p>
-                    <p className="text-2xl font-bold text-success">{stat.value}</p>
+                    <p className="text-xl font-bold text-success">{stat.value}</p>
                     <p className="text-xs text-accent mt-1">{stat.change}</p>
                   </div>
                   <Icon className="h-6 w-6 text-success" />

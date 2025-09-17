@@ -68,26 +68,26 @@ const MessageCenter = () => {
   const messages: Message[] = [
     {
       id: '1',
-      senderId: '2',
-      senderName: 'Maria Doe',
-      content: 'Hi! I saw your profile and would love to discuss potential collaboration opportunities.',
-      timestamp: new Date('2024-01-15T10:30:00'),
+      senderId: '1',
+      senderName: 'John Smith',
+      content: 'Hi, I’m interested in collaborating with diaspora members on education projects.',
+      timestamp: new Date('2024-01-15T10:00:00'),
       read: true
     },
     {
       id: '2',
-      senderId: user?.id || '1',
-      senderName: user?.name || 'You',
-      content: 'Hello Maria! I\'d be happy to discuss collaboration. What type of projects are you working on?',
-      timestamp: new Date('2024-01-15T11:15:00'),
+      senderId: '2',
+      senderName: 'Maria Doe',
+      content: 'Great! I’d love to connect. Let’s schedule a call next week.',
+      timestamp: new Date('2024-01-15T10:05:00'),
       read: true
     },
     {
       id: '3',
-      senderId: '2',
-      senderName: 'Maria Doe',
-      content: 'Thanks for connecting! Looking forward to collaborating.',
-      timestamp: new Date('2024-01-15T14:20:00'),
+      senderId: '1',
+      senderName: 'John Smith',
+      content: 'Perfect, I’ll send you my availability.',
+      timestamp: new Date('2024-01-15T10:10:00'),
       read: false
     }
   ];
