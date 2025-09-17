@@ -49,9 +49,9 @@ const Login = () => {
     <div className="min-h-screen hero-gradient flex items-center justify-center p-4">
       <div className="w-full max-w-md space-y-8 animate-fade-in">
         {/* Header */}
-        <div className="text-center text-white">
-          <h1 className="text-4xl font-bold mb-2">BlackSheep</h1>
-          <h2 className="text-xl font-semibold mb-2">AADF Connect Hub</h2>
+        <div className="text-center">
+          <h1 className="text-4xl font-bold mb-2 text-black">BlackSheep</h1>
+          <h2 className="text-xl font-semibold mb-2 text-black">AADF Connect Hub</h2>
           <p className="text-primary-glow">Connecting Alumni & Diaspora</p>
         </div>
 

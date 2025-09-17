@@ -42,19 +42,28 @@ const DiasporaDashboard = () => {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat, index) => {
           const Icon = stat.icon;
           return (
-            <Card key={index} className="card-professional">
-              <CardContent className="p-6">
+            <Card 
+              key={index} 
+              className="card-professional cursor-pointer hover:bg-card-hover transition-colors"
+              onClick={() => {
+                if (stat.label === 'Global Network') window.location.href = '#/network-connections';
+                if (stat.label === 'Active Collaborations') window.location.href = '#/active-projects';
+                if (stat.label === 'Mentorship Sessions') window.location.href = '#/upcoming-events';
+                if (stat.label === 'Innovation Ideas') window.location.href = '#/collaboration-details';
+              }}
+            >
+              <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm text-muted-foreground">{stat.label}</p>
-                    <p className="text-3xl font-bold text-success">{stat.value}</p>
+                    <p className="text-2xl font-bold text-success">{stat.value}</p>
                     <p className="text-xs text-accent mt-1">{stat.change}</p>
                   </div>
-                  <Icon className="h-8 w-8 text-success" />
+                  <Icon className="h-6 w-6 text-success" />
                 </div>
               </CardContent>
             </Card>

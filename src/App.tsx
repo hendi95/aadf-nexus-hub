@@ -9,6 +9,11 @@ import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import MessageCenter from "./components/messaging/MessageCenter";
 import ProfilePage from "./components/profile/ProfilePage";
+import NetworkConnections from "./pages/NetworkConnections";
+import ActiveProjects from "./pages/ActiveProjects";
+import UpcomingEvents from "./pages/UpcomingEvents";
+import CollaborationDetails from "./pages/CollaborationDetails";
+import AlumniCommunity from "./pages/AlumniCommunity";
 import Header from "./components/layout/Header";
 import { useState, useEffect } from "react";
 
@@ -58,6 +63,16 @@ const AppContent = () => {
             </main>
           </div>
         );
+      case 'network-connections':
+        return <NetworkConnections />;
+      case 'active-projects':
+        return <ActiveProjects />;
+      case 'upcoming-events':
+        return <UpcomingEvents />;
+      case 'collaboration-details':
+        return <CollaborationDetails />;
+      case 'alumni-community':
+        return <AlumniCommunity />;
       default:
         return <Dashboard />;
     }

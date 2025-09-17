@@ -36,19 +36,28 @@ const AlumniDashboard = () => {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat, index) => {
           const Icon = stat.icon;
           return (
-            <Card key={index} className="card-professional">
-              <CardContent className="p-6">
+            <Card 
+              key={index} 
+              className="card-professional cursor-pointer hover:bg-card-hover transition-colors"
+              onClick={() => {
+                if (stat.label === 'Network Connections') window.location.href = '#/network-connections';
+                if (stat.label === 'Active Projects') window.location.href = '#/active-projects';
+                if (stat.label === 'Upcoming Events') window.location.href = '#/upcoming-events';
+                if (stat.label === 'Messages') window.location.href = '#/messages';
+              }}
+            >
+              <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm text-muted-foreground">{stat.label}</p>
-                    <p className="text-3xl font-bold text-primary">{stat.value}</p>
+                    <p className="text-2xl font-bold text-primary">{stat.value}</p>
                     <p className="text-xs text-success mt-1">{stat.change}</p>
                   </div>
-                  <Icon className="h-8 w-8 text-primary" />
+                  <Icon className="h-6 w-6 text-primary" />
                 </div>
               </CardContent>
             </Card>
@@ -124,7 +133,12 @@ const AlumniDashboard = () => {
                     <span>Deadline: {opportunity.deadline}</span>
                     <span>{opportunity.applicants} applicants</span>
                   </div>
-                  <Button variant="outline" size="sm" className="mt-3 w-full sm:w-auto">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="mt-3 w-full sm:w-auto"
+                    onClick={() => window.location.href = '#/collaboration-details'}
+                  >
                     Learn More
                   </Button>
                 </div>
@@ -152,7 +166,11 @@ const AlumniDashboard = () => {
               <MessageSquare className="mr-2 h-4 w-4" />
               <span className="hidden sm:inline">Send</span> Messages
             </Button>
-            <Button variant="outline" className="w-full">
+            <Button 
+              variant="outline" 
+              className="w-full"
+              onClick={() => window.location.href = '#/alumni-community'}
+            >
               <Users className="mr-2 h-4 w-4" />
               <span className="hidden sm:inline">Find</span> Alumni
             </Button>
@@ -160,7 +178,11 @@ const AlumniDashboard = () => {
               <BookOpen className="mr-2 h-4 w-4" />
               <span className="hidden sm:inline">Create</span> Project
             </Button>
-            <Button variant="outline" className="w-full">
+            <Button 
+              variant="outline" 
+              className="w-full"
+              onClick={() => window.location.href = '#/upcoming-events'}
+            >
               <Calendar className="mr-2 h-4 w-4" />
               <span className="hidden sm:inline">View</span> Events
             </Button>
